@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>罗政豪 — 软件工程 · AI 全栈开发</title>
+  <meta name="description" content="罗政豪的个人作品集：软件工程方向，AI 辅助开发、Java 后端与 AI 全栈开发的项目作品展示。" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/projects.css" />
+</head>
+<body>
+
+  <!-- 顶部导航 -->
+  <header class="site-nav" id="siteNav">
+    <a class="site-nav__brand" href="#top">罗政豪<span>/Luo ZhengHao</span></a>
+    <nav class="site-nav__links" id="navLinks" aria-label="主导航">
+      <a href="#intro">个人介绍</a>
+      <a href="#works">项目作品</a>
+      <a href="#about">关于我</a>
+      <a href="#contact">联系方式</a>
+    </nav>
+    <button class="site-nav__toggle" id="navToggle" aria-label="打开菜单" aria-expanded="false">
+      <span></span><span></span>
+    </button>
+  </header>
+
+  <main id="top">
+
+    <!-- 首屏 Hero：大标题 + 分层文字 -->
+    <section class="hero">
+      <span class="watermark hero__wm" aria-hidden="true">LZH</span>
+      <span class="v-label hero__vlabel" aria-hidden="true">Portfolio 2026 — Vol.01</span>
+      <span class="corners" aria-hidden="true"></span>
+
+      <div class="hero__meta">
+        <div class="hero__meta-l">
+          <span class="band" aria-hidden="true"></span>
+          <p class="eyebrow">Portfolio — Vol. 01</p>
+        </div>
+        <p class="hero__year">2026</p>
+      </div>
+      <h1 class="hero__title">
+        <span class="hero__title-line">AI 辅助开发</span>
+        <span class="hero__title-line hero__title-line--serif">Java 后端</span>
+        <span class="hero__title-line hero__title-line--accent">全栈应用</span>
+      </h1>
+      <p class="hero__sub">
+        软件工程专业 · 广州软件学院在读<br />
+        关注 AI 辅助开发、Java 后端与 AI 全栈开发。
+      </p>
+      <a class="hero__cta" href="#works">浏览作品
+        <span class="hero__cta-arrow">→</span>
+      </a>
+    </section>
+
+    <!-- 个人介绍 -->
+    <section class="section intro" id="intro" data-wm="01">
+      <header class="section__head">
+        <p class="eyebrow">01 / 个人介绍</p>
+        <h2 class="section__title">软件工程 · AI 全栈开发</h2>
+      </header>
+      <div class="intro__body">
+        <p class="intro__lead">
+          我叫罗政豪，是一名软件工程专业学生，目前主要关注 AI 辅助开发、Java 后端技术与 AI 全栈开发。
+        </p>
+        <div class="intro__cols">
+          <p>
+            平时主要使用 Python、Java 进行项目开发，也在持续学习前端开发、数据可视化与 AI 应用构建。
+          </p>
+          <p>
+            所在城市：中国 · 广州，目前就读于广州软件学院。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 项目作品：容器由 projects.js 动态填充 -->
+    <section class="section works" id="works" data-wm="02">
+      <header class="section__head works__head">
+        <p class="eyebrow">02 / 精选作品</p>
+        <h2 class="section__title">Selected Works</h2>
+      </header>
+
+      <div class="projects" id="projects"></div>
+    </section>
+
+    <!-- 关于我 -->
+    <section class="section about" id="about" data-wm="03">
+      <header class="section__head">
+        <p class="eyebrow">03 / 关于我</p>
+        <h2 class="section__title">About</h2>
+      </header>
+
+      <div class="about__bio">
+        <div class="about__portrait plate-frame">
+          <span class="corners" aria-hidden="true"></span>
+          <div class="about__plate" role="img" aria-label="罗政豪">
+            <span class="about__plate-name">罗政豪</span>
+            <span class="about__plate-sub">Luo ZhengHao · 2026</span>
+          </div>
+        </div>
+        <div class="about__text">
+          <p class="lead">
+            我是罗政豪，软件工程专业学生，广州软件学院在读，目前主攻 AI 辅助开发与 AI 全栈开发。
+          </p>
+          <p>
+            日常使用 Python、Java 进行项目开发，持续学习前端开发、数据可视化与 AI 应用构建。
+          </p>
+        </div>
+      </div>
+
+      <div class="about__skills">
+        <h3 class="about__skills-title">技能方向</h3>
+        <ul class="skills">
+          <li><span class="skill-tag skill-tag--ink">Python</span></li>
+          <li><span class="skill-tag skill-tag--accent">Java</span></li>
+          <li><span class="skill-tag skill-tag--ink">Redis</span></li>
+          <li><span class="skill-tag skill-tag--accent">MySQL</span></li>
+          <li><span class="skill-tag skill-tag--ink">Spring Boot</span></li>
+          <li><span class="skill-tag skill-tag--accent">Maven</span></li>
+          <li><span class="skill-tag skill-tag--ink">Git</span></li>
+          <li><span class="skill-tag skill-tag--accent">Docker</span></li>
+          <li><span class="skill-tag skill-tag--ink">HTML/CSS/JS</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 联系方式 -->
+    <footer class="contact" id="contact" data-wm="04">
+      <span class="contact__corners" aria-hidden="true"></span>
+      <span class="v-label contact__vlabel" aria-hidden="true">Keep in touch — 2026</span>
+
+      <div class="contact__head">
+        <span class="band" aria-hidden="true"></span>
+        <p class="eyebrow">04 / 保持联系</p>
+      </div>
+      <h2 class="contact__title">有任何机会或想法，欢迎聊聊。</h2>
+      <div class="contact__info">
+        <p><span>所在城市</span>中国 · 广州</p>
+        <p><span>当前状态</span>广州软件学院 · 在读</p>
+      </div>
+      <p class="contact__foot">© 2026 罗政豪 · 原生构建 · 无框架无组件库</p>
+    </footer>
+
+  </main>
+
+  <script src="js/projects.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

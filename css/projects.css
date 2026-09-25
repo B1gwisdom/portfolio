@@ -1,0 +1,273 @@
+/* ==========================================================================
+   projects.css — 杂志式 / 编辑式项目排版
+   四种布局模式，共用统一的文字、分隔线与色块语言，仅图文比例与顺序不同。
+   ========================================================================== */
+
+.projects {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(64px, 10vw, 140px);
+}
+
+/* ---------- 单个项目条目 ---------- */
+.project {
+  position: relative;
+  display: grid;
+  gap: clamp(18px, 3vw, 40px);
+  padding-bottom: clamp(48px, 7vw, 96px);
+  border-bottom: 1px solid var(--line);
+}
+.project:last-child { border-bottom: none; padding-bottom: 0; }
+
+/* 杂志页码感编号（前置朱红短线） */
+.project__number {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  color: var(--ink-soft);
+}
+.project__number::before {
+  content: "";
+  width: 20px;
+  height: 2px;
+  background: var(--accent);
+}
+
+/* 项目头部巨型序号水印 */
+.project__head { position: relative; }
+.project__head > div { position: relative; z-index: 1; }
+.project__wm {
+  position: absolute;
+  top: -34px;
+  right: -6px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(70px, 10vw, 130px);
+  line-height: 1;
+  color: rgba(24, 20, 16, 0.05);
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+}
+
+/* 分类眉题（右上角切角） */
+.project__genre {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 5px 14px;
+  background: var(--ink);
+  color: var(--paper);
+  clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 0 100%);
+}
+
+/* 类别标签（小号、低调，靠近标题） */
+.project__tag {
+  display: inline-block;
+  margin-left: 10px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  color: var(--ink-soft);
+  border: 1px solid var(--line-strong);
+  vertical-align: 3px;
+}
+
+/* 标题 */
+.project__title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(30px, 4.6vw, 54px);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+}
+
+/* 简介与信息网格 */
+.project__desc {
+  color: var(--ink-soft);
+  max-width: 52ch;
+  font-size: 1.0625rem;
+  line-height: 1.9;
+}
+
+.project__meta {
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 8px 36px;
+  font-size: 14px;
+}
+.project__meta dt { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.16em; color: var(--ink-soft); text-transform: uppercase; }
+.project__meta dd { font-weight: 600; }
+
+/* 技术栈标签 */
+.project__stack { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+.project__stack li {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  border: 1px solid var(--line);
+  padding: 5px 12px;
+}
+
+/* 了解更多链接 */
+.project__more {
+  display: inline-block;
+  margin-top: 24px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink);
+  border-bottom: 1px solid var(--accent);
+  padding-bottom: 3px;
+  transition: color 0.25s, border-color 0.25s;
+}
+.project__more span { color: var(--accent); margin-left: 6px; }
+.project__more:hover { color: var(--accent); }
+
+/* 图片 */
+.project__media img {
+  width: 100%;
+  object-fit: cover;
+  /* 让图片有一点杂志纸张质感 */
+  filter: saturate(0.94) contrast(1.02);
+}
+
+/* ==========================================================================
+   布局模式 A：split-left  — 左图右文（大图 7/12）
+   ========================================================================== */
+.project--split-left {
+  grid-template-columns: 7fr 5fr;
+  grid-template-areas:
+    "media head"
+    "media body";
+  align-items: start;
+  column-gap: clamp(24px, 4vw, 72px);
+}
+.project--split-left .project__media { grid-area: media; margin-left: clamp(0px, 6vw, 120px); }
+.project--split-left .project__head  { grid-area: head; }
+.project--split-left .project__body  { grid-area: body; }
+
+/* ==========================================================================
+   布局模式 B：split-right — 右图左文（镜像节奏，7/12 靠右）
+   ========================================================================== */
+.project--split-right {
+  grid-template-columns: 5fr 7fr;
+  grid-template-areas:
+    "head media"
+    "body media";
+  align-items: start;
+  column-gap: clamp(24px, 4vw, 72px);
+}
+.project--split-right .project__media { grid-area: media; margin-right: clamp(0px, 6vw, 120px); }
+.project--split-right .project__head  { grid-area: head; }
+.project--split-right .project__body  { grid-area: body; }
+
+/* ==========================================================================
+   布局模式 C：full — 全宽大图 + 底部信息带（大字报感）
+   ========================================================================== */
+.project--full { display: block; }
+.project--full .project__media { margin-bottom: clamp(24px, 4vw, 48px); }
+.project--full .project__media img {
+  aspect-ratio: 16 / 7;
+  max-height: 640px;
+}
+.project--full .project__floor {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 32px;
+  border-top: 2px solid var(--ink);
+  padding-top: 20px;
+}
+.project--full .project__floor > div { position: relative; z-index: 1; }
+.project--full .project__floor .project__wm { top: -26px; }
+.project--full .project__title { font-size: clamp(34px, 6vw, 72px); margin: 6px 0 10px; }
+.project--full .project__meta { margin-top: 0; }
+.project--full .project__desc { max-width: 44ch; }
+
+/* ==========================================================================
+   布局模式 D：offset — 错落双图 + 局部色块标题（编辑排版感）
+   ========================================================================== */
+.project--offset {
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas:
+    "head head"
+    "a    b"
+    "body a2";
+  column-gap: clamp(24px, 5vw, 80px);
+  row-gap: clamp(18px, 3vw, 36px);
+}
+.project--offset .project__head { grid-area: head; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+.project--offset .project__media--a  { grid-area: a;  }
+.project--offset .project__media--b  { grid-area: b;  }
+.project--offset .project__body     { grid-area: body; align-self: end; }
+.project--offset .project__media--a2 { grid-area: a2; align-self: start; }
+/* 色块标题：覆盖在第二张图上方的局部色块 */
+.project--offset .project__block {
+  grid-area: a2;
+  position: relative;
+  background: var(--accent);
+  padding: clamp(20px, 3vw, 40px);
+  transform: translate(-30px, 30px);
+  z-index: 2;
+}
+.project--offset .project__block-inner {
+  border: 2px solid var(--ink);
+  padding: clamp(18px, 2vw, 30px);
+}
+.project--offset .project__feature {
+  font-family: var(--font-display);
+  font-size: clamp(22px, 3vw, 38px);
+  font-weight: 600;
+  line-height: 1.2;
+}
+/* 黑色块的 media–a2 放在色块下方留出堆叠空间 */
+.project--offset .project__media--a2 { margin-top: 8px; }
+.project--offset .project__media img { aspect-ratio: 4 / 3; }
+
+/* 正文信息块通用 */
+.project__body .project__meta { border-top: 1px solid var(--line); padding-top: 16px; }
+
+/* ==========================================================================
+   移动端：统一回到单列、排版节奏扁平化
+   ========================================================================== */
+@media (max-width: 900px) {
+  .project--split-left,
+  .project--split-right,
+  .project--offset {
+    grid-template-columns: 1fr !important;
+    grid-template-areas:
+      "head"
+      "media"
+      "body" !important;
+    gap: 14px;
+  }
+  .project--split-left .project__media,
+  .project--split-right .project__media { margin: 0; }
+  .project--split-left .project__media img,
+  .project--split-right .project__media img { aspect-ratio: 4 / 3; }
+
+  .project--full .project__floor { flex-direction: column; align-items: flex-start; gap: 14px; }
+  .project--full .project__media img { aspect-ratio: 4 / 3; max-height: none; }
+
+  /* offset：移除堆叠与色块偏移，变成普通顺序展示 */
+  .project--offset .project__block { transform: none; }
+  .project--offset .project__media--a,
+  .project--offset .project__media--b { display: block; }
+  .project--offset .project__block-inner { border: none; padding: 0; }
+  .project--offset .project__feature { background: var(--accent); display: inline-block; padding: 6px 16px; }
+  .project--offset .project__block .corners { display: none; }
+
+  /* 移动端弱化项目水印，避免与标题抢视觉 */
+  .project__wm { color: rgba(24, 20, 16, 0.035); font-size: clamp(64px, 16vw, 96px); }
+}
