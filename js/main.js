@@ -1,8 +1,41 @@
 /* ==========================================================================
-   main.js — 导航交互、移动端菜单、滚动状态
+   main.js — 主题切换、导航交互、移动端菜单、滚动状态
    ========================================================================== */
 
 (function () {
+  /* ---------- 深浅色主题 ---------- */
+  const THEME_KEY = "portfolio-theme";
+  const root = document.documentElement;
+  const themeToggle = document.getElementById("themeToggle");
+
+  /* localStorage 在隐私模式等场景可能不可用，读写失败时不影响页面 */
+  function readTheme() {
+    try { return localStorage.getItem(THEME_KEY); } catch (err) { return null; }
+  }
+  function saveTheme(theme) {
+    try { localStorage.setItem(THEME_KEY, theme); } catch (err) { /* 忽略写入失败 */ }
+  }
+
+  function applyTheme(theme) {
+    const isDark = theme === "dark";
+    root.setAttribute("data-theme", isDark ? "dark" : "light");
+    if (themeToggle) {
+      themeToggle.setAttribute("aria-label", isDark ? "切换浅色主题" : "切换深色主题");
+    }
+  }
+
+  /* 首次访问默认浅色，之后沿用用户上一次的选择 */
+  applyTheme(readTheme() === "dark" ? "dark" : "light");
+
+  if (themeToggle) {
+    themeToggle.addEventListener("click", () => {
+      const next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+      applyTheme(next);
+      saveTheme(next);
+    });
+  }
+
+  /* ---------- 导航交互 ---------- */
   const navToggle = document.getElementById("navToggle");
   const navLinks = document.getElementById("navLinks");
 

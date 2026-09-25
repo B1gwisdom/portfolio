@@ -47,7 +47,7 @@
   font-weight: 600;
   font-size: clamp(70px, 10vw, 130px);
   line-height: 1;
-  color: rgba(24, 20, 16, 0.05);
+  color: var(--wm);
   pointer-events: none;
   user-select: none;
   z-index: 0;
@@ -230,6 +230,7 @@
   font-size: clamp(22px, 3vw, 38px);
   font-weight: 600;
   line-height: 1.2;
+  color: var(--on-accent);   /* 色块之上始终使用深色文字，保证对比度 */
 }
 /* 黑色块的 media–a2 放在色块下方留出堆叠空间 */
 .project--offset .project__media--a2 { margin-top: 8px; }
@@ -269,5 +270,5 @@
   .project--offset .project__block .corners { display: none; }
 
   /* 移动端弱化项目水印，避免与标题抢视觉 */
-  .project__wm { color: rgba(24, 20, 16, 0.035); font-size: clamp(64px, 16vw, 96px); }
+  .project__wm { color: var(--wm-soft); font-size: clamp(64px, 16vw, 96px); }
 }
